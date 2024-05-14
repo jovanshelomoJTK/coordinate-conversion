@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { parseDms } from "dms-conversion";
 import { useState } from "react";
 
 export default function DMS2DD() {
@@ -12,6 +13,14 @@ export default function DMS2DD() {
     latitude: "",
     longitude: "",
   });
+
+  function convertDMS2DD() {
+    setCoordsDD({
+      latitude: parseDms(coordsDMS.latitude).toString(),
+      longitude: parseDms(coordsDMS.longitude).toString(),
+    });
+  }
+
   return (
     <div className="grid gap-4">
       <p className="text-sm text-muted-foreground">
@@ -47,7 +56,7 @@ export default function DMS2DD() {
             }}
           />
         </div>
-        <Button>Convert</Button>
+        <Button onClick={convertDMS2DD}>Convert</Button>
         <p className="text-foreground underline">DD</p>
         <div className="grid grid-cols-3 items-center gap-4">
           <Label htmlFor="latitudeDD">Latitude</Label>

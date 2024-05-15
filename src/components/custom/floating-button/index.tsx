@@ -1,15 +1,31 @@
 import { Button } from "@/components/ui/button";
 import { forwardRef } from "react";
 
+/**
+ * A floating button component.
+ *
+ * @param {object} props - The component props.
+ * @param {React.ReactNode} children - The content of the button.
+ * @param {React.LegacyRef<HTMLButtonElement>} ref - The ref to the button element.
+ * @returns {JSX.Element} The rendered button component.
+ * @example
+ * ```tsx
+ * <FloatingButton>
+ *   <span>Click me</span>
+ * </FloatingButton>
+ * ```
+ */
 const FloatingButton = forwardRef(
+  /**
+
+   */
   (
     {
       children,
       ...props
     }: {
       children: React.ReactNode;
-      props?: React.ButtonHTMLAttributes<HTMLButtonElement>;
-    },
+    } & React.ComponentPropsWithoutRef<"button">,
     ref: React.LegacyRef<HTMLButtonElement>
   ) => {
     return (

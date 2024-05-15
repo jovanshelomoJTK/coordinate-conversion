@@ -1,5 +1,15 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
-module.exports = {
+export default {
   preset: 'ts-jest',
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.ts$': 'ts-jest'
+  },
+  transformIgnorePatterns: [
+    "node_modules/(?!(ol)/)"
+  ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  rootDir: '.',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1'
+  },
 };

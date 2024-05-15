@@ -8,10 +8,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FloatingButton from "../floating-button";
 import DMS2DD from "./dms2dd";
 import DD2DMS from "./dd2dms";
+import useConverterPopoverStore from "@/hooks/useConverterPopoverStore";
 
+/**
+ * Renders a Converter Popover component.
+ * This component displays a popover with tabs for converting coordinates between DMS and DD formats.
+ * @returns The Converter Popover component.
+ */
 export default function ConverterPopover() {
+  const popoverOpen = useConverterPopoverStore((state) => state.popoverOpen);
+  const setPopoverOpen = useConverterPopoverStore(
+    (state) => state.setPopoverOpen
+  );
+
   return (
-    <Popover>
+    <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
       <PopoverTrigger asChild>
         <FloatingButton>
           <GearIcon />

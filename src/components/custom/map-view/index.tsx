@@ -45,7 +45,6 @@ export default function MapView() {
       // Check if there is a feature at the clicked location
       if (tempMap.hasFeatureAtPixel(event.pixel)) {
         const feature = tempMap.getFeaturesAtPixel(event.pixel)[0];
-        setPopoverOpen(true);
         const flatCoordiates = (
           feature.getGeometry() as Point
         ).getFlatCoordinates() as [number, number];
@@ -63,11 +62,20 @@ export default function MapView() {
         setDDValue([DDCoordinates[1], DDCoordinates[0]]);
         setDMSValue([DMSCoordinates.latitude, DMSCoordinates.longitude]);
         setSelectedMarker(feature);
+        setPopoverOpen(true);
       } else {
         // If there is no feature, add a new point
         const coord = event.coordinate;
-        const toLonLat = transform(coord, "EPSG:3857", "EPSG:4326");
-        tempMap.addLayer(createPoint(toLonLat[1], toLonLat[0]));
+        const DDCoordinate = transform(coord, "EPSG:3857", "EPSG:4326");
+        const DMSCoordinate = convertDDToDMS(DDCoordinate[1], DDCoordinate[0]);
+
+        const point = createPoint(DDCoordinate[1], DDCoordinate[0]);
+        tempMap.addLayer(point);
+
+        setDDValue([DDCoordinate[1], DDCoordinate[0]]);
+        setDMSValue([DMSCoordinate.latitude, DMSCoordinate.longitude]);
+        setSelectedMarker(point.getSource().getFeatures()[0]);
+        setPopoverOpen(true);
       }
     });
 

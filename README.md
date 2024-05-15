@@ -8,11 +8,13 @@ Aplikasi sederhana untuk konversi DMS (Degree, Minute, Second) ke DD (Decimal De
 
 ```
 coordinate-conversion/
+├── __tests__/
+│   └── ...
 ├── public/
 │   └── ...
 ├── src/
 │   ├── components/
-│   │   ├── custom/ (Custom component yang dibuat sendiri)
+│   │   ├── custom/
 │   │   │   ├── converter-popup/
 │   │   │   │   ├── dd2dms.tsx
 │   │   │   │   ├── dms2dd.tsx
@@ -21,22 +23,23 @@ coordinate-conversion/
 │   │   │   │   └── index.tsx
 │   │   │   └── map-view/
 │   │   │       └── index.tsx
-│   │   └── ui/ (Reusable UI Component dari Shadcn/UI)
-│   │       ├── button.tsx
-│   │       ├── input.tsx
-│   │       ├── label.tsx
-│   │       ├── popover.tsx
-│   │       └── tabs.tsx
-│   ├── lib/ (Folder untuk menyimpan utility)
+│   │   └── ui/
+│   │       └── ...
+│   ├── hooks/
+│   │   ├── useConverterPopoverStore.ts
+│   │   └── useMapStore.ts
+│   ├── lib/
+│   │   ├── map-utils.ts
 │   │   └── utils.ts
 │   ├── App.tsx
 │   ├── index.css
 │   └── main.tsx
-├── tests (Folder untuk menyimpan test)
 ├── index.html
 ├── jest.config.js
+├── jest.setup.ts
 ├── package-lock.json
 ├── package.json
+├── postcss.config.js
 ├── README.md
 ├── tailwind.config.js
 ├── tsconfig.json

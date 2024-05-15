@@ -58,3 +58,11 @@ coordinate-conversion/
    ```
 
 3. Buka browser dan akses `http://localhost:5173/`
+
+## Testing
+1. Jalankan perintah berikut
+
+   ```bash
+   npm run test
+   ```
+   > Note: Dikarenakan terdapat masalah yang belum terselesaikan terkait dengan Openlayers, maka hingga saat ini testing hanya dilakukan ke komponen yang tidak menggunakan Openlayers, yaitu hanya `floating-button` dan `utils`
